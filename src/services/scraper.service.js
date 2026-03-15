@@ -22,19 +22,19 @@ const obtenerNotasDesdePortal = async (usuario, password) => {
 
   try {
     console.log('[SCRAPER] Navegando al portal...');
-    await page.goto(unicolomboUrl, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(unicolomboUrl, { waitUntil: 'networkidle2', timeout: 60000 });
 
-    await page.waitForSelector('#username', { timeout: 15000 });
+    await page.waitForSelector('#username', { timeout: 30000 });
     await page.type('#username', usuario, { delay: 50 });
     await page.type('#password', password, { delay: 50 });
     await page.click('#kc-login');
 
-    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 });
+    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 60000 });
 
     console.log('[SCRAPER] Navegando a notas...');
-    await page.goto(NOTAS_URL, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(NOTAS_URL, { waitUntil: 'networkidle2', timeout: 60000 });
 
-    await new Promise(r => setTimeout(r, 6000));
+    await new Promise(r => setTimeout(r, 15000));
 
     const datos = await page.evaluate(() => {
       const resultado = {
